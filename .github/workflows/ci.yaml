@@ -23,12 +23,31 @@ permissions:
   contents: read
 
 jobs:
-  validate:
-    name: Validate
+  lint:
+    name: ${{ matrix.name }}
     if: >-
       ${{ !(startsWith(github.head_ref, 'release-please--')
       && github.event.pull_request.head.repo.full_name == github.repository) }}
     runs-on: ubuntu-26.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Format
+            task: lint:format
+            tools: node npm:oxfmt
+          - name: Shellcheck
+            task: lint:shell
+            tools: aqua:koalaman/shellcheck
+          - name: Actionlint
+            task: lint:actionlint
+            tools: aqua:rhysd/actionlint
+          - name: Zizmor
+            task: lint:zizmor
+            tools: aqua:zizmorcore/zizmor
+          - name: Validate Renovate presets
+            task: validate
+            tools: node npm:renovate
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -39,51 +58,20 @@ jobs:
         uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
         with:
           experimental: true
-          install_args: --locked
+          install_args: --locked ${{ matrix.tools }}
 
-      - name: Lint
-        run: mise run lint
-
-      - name: Validate Renovate presets
-        run: mise run validate default.json apps/*.json5 .renovaterc.json5
-
-  workflow-lint:
-    if: >-
-      ${{ !(startsWith(github.head_ref, 'release-please--')
-      && github.event.pull_request.head.repo.full_name == github.repository) }}
-    name: Workflow Lint
-    runs-on: ubuntu-26.04
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Setup Mise
-        uses: jdx/mise-action@6be3c7ed4c21d4f76b208d351d95aac273ebb76d # v5.2.4
-        with:
-          install: false
-
-      - name: Resolve linter versions
-        id: tools
-        run: |
-          echo "actionlint=$(mise config get tools.actionlint)" >> "$GITHUB_OUTPUT"
-          echo "zizmor=$(mise config get tools.zizmor)" >> "$GITHUB_OUTPUT"
-
-      - name: Lint workflows
-        uses: home-operations/.github/actions/workflow-lint@1d6eebfd2066f2aa84939e573e56f60d8d2ed85f # workflow-lint-v1.0.4
-        with:
-          actionlint-version: ${{ steps.tools.outputs.actionlint }}
-          zizmor-version: ${{ steps.tools.outputs.zizmor }}
+      - name: Run ${{ matrix.task }}
+        env:
+          # zizmor's online audits query the GitHub API
+          GH_TOKEN: ${{ matrix.task == 'lint:zizmor' && github.token || '' }}
+          TASK: ${{ matrix.task }}
+        run: mise run "$TASK"
 
   status:
     if: ${{ !cancelled() }}
     name: Build Success
     needs:
-      - validate
-      - workflow-lint
+      - lint
     runs-on: ubuntu-26.04
     permissions: {}
     steps:

@@ -11,7 +11,7 @@ This repository ships **managers, overrides, and a small amount of update policy
 ```jsonc
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>home-operations/renovate-presets"],
+  "extends": ["github>ohioit/renovate-presets"],
 }
 ```
 
@@ -23,14 +23,14 @@ Use Renovate's path-based preset syntax (include the `.json5` extension since Re
 
 ```jsonc
 {
-  "extends": ["github>home-operations/renovate-presets//apps/cnpg.json5"],
+  "extends": ["github>ohioit/renovate-presets//apps/kubectl.json5"],
 }
 ```
 
 ### Pin to a tag or commit
 
 ```jsonc
-"extends": ["github>home-operations/renovate-presets#1.0.0"]
+"extends": ["github>ohioit/renovate-presets#1.0.0"]
 ```
 
 A tag applies only to the reference it is written on, and Renovate has no
@@ -41,15 +41,17 @@ branch:
 
 ```jsonc
 "extends": [
-  "github>home-operations/renovate-presets#1.0.0",
-  "github>home-operations/renovate-presets//apps/cnpg.json5#1.0.0",
+  "github>ohioit/renovate-presets#1.0.0",
+  "github>ohioit/renovate-presets//apps/kubectl.json5#1.0.0",
 ]
 ```
 
 ## Layout
 
 - [`default.json`](./default.json) — the defaults: stock Renovate presets, custom managers, package overrides and commit-message and zer0ver policy. Edit it directly; every rule carries a `description` explaining itself.
-- [`apps/`](./apps) — per-application presets (CNPG, Grafana dashboards, Talos factory, llama.cpp, Phanpy, SearXNG): custom managers and versioning schemes that only matter if you run the app. **Opt-in, not part of `default.json`.**
+- [`apps/`](./apps) — per-application presets (Grafana dashboards, kubectl): custom managers and versioning schemes that only matter if you run the app. **Opt-in, not part of `default.json`.**
 
 Both are flat and self-contained. No preset here references another file in this
 repo, which is what lets a single tag pin whatever you extend.
+
+See [MAINTENANCE.md](./MAINTENANCE.md) for how changes are made and released.

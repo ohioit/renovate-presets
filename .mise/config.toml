@@ -1,29 +1,42 @@
 # https://mise.jdx.dev/configuration.html
 [tools]
-actionlint = "1.7.12"
-lefthook = "2.2.2"
-node = "26.12.1"
-oxfmt = "0.75.0"
+"aqua:evilmartians/lefthook" = "2.2.2"
+"aqua:koalaman/shellcheck" = "0.11.0"
+"aqua:rhysd/actionlint" = "1.7.12"
+"aqua:zizmorcore/zizmor" = "1.31.1"
+"npm:oxfmt" = "0.75.0"
 # @yarnpkg/libzip 3.2.2 shipped without provenance where 3.2.0 had it, so mise's
 # no-downgrade trust policy refuses the whole tree. It reaches us through
 # @yarnpkg/core, which requires ^3.2.2 — the floor, so no renovate version can
 # resolve past it. Drop the exclude once upstream publishes an attested release.
-"npm:renovate" = { version = "44.115.10", trust_policy_excludes = [
+"npm:renovate" = { version = "44.198.2", trust_policy_excludes = [
   "@yarnpkg/libzip",
 ] }
-shellcheck = "0.11.0"
-zizmor = "1.31.1"
+node = "26.12.1"
 
 [tasks.lint]
-description = "Check JSON/JSON5, YAML, Markdown, and shell formatting"
-run = [
-  "oxfmt --check .",
-  "git ls-files -co --exclude-standard '*.sh' | xargs -r shellcheck",
-]
+description = "Run every linter"
+depends = ["lint:*"]
+
+[tasks."lint:format"]
+description = "Check JSON/JSON5, YAML, and Markdown formatting"
+run = "oxfmt --check ."
+
+[tasks."lint:shell"]
+description = "Lint shell scripts"
+run = "git ls-files -co --exclude-standard '*.sh' | xargs -r shellcheck"
+
+[tasks."lint:actionlint"]
+description = "Lint GitHub Actions workflows"
+run = "actionlint -color -shellcheck="
+
+[tasks."lint:zizmor"]
+description = "Audit GitHub Actions workflows for security issues"
+run = "zizmor --color=always --no-progress .github"
 
 [tasks.validate]
 description = "Validate Renovate presets against the schema"
-run = "renovate-config-validator --strict"
+run = "renovate-config-validator --strict default.json apps/*.json5 .renovaterc.json5"
 
 [hooks]
 postinstall = "lefthook install"
