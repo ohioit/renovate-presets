@@ -1,0 +1,21 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  packageRules: [
+    {
+      // kubectl supports one minor version of skew either side of the API server, so it has to
+      // move in step with our clusters rather than with upstream. Hold it to the minor the
+      // clusters run; patch releases inside that line still flow through. When the clusters are
+      // upgraded, bump the minor below and cut a new release of these presets.
+      //
+      // mise reports kubectl under either name depending on how the tool is declared:
+      //   "aqua:kubernetes/kubernetes/kubectl" = "1.36.5"   depName is the full backend key
+      //   kubectl = "1.36.5"                                 depName is the mise registry name
+      // The allowed range is a regex rather than `1.36.x` so it holds under whatever versioning
+      // the manager picks, with or without a leading `v`.
+      description: "Hold kubectl to the Kubernetes minor version our clusters run",
+      matchDatasources: ["github-tags"],
+      matchDepNames: ["kubectl", "aqua:kubernetes/kubernetes/kubectl"],
+      allowedVersions: "/^v?1\\.36\\./",
+    },
+  ],
+}
