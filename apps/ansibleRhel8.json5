@@ -1,0 +1,52 @@
+// Holds Ansible tooling to the last versions that can still manage RHEL 8 hosts. RHEL 8
+// maintenance support ends 2029-05-31; once the last RHEL 8 host is retired, delete this preset
+// rather than relaxing it.
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  packageRules: [
+    {
+      // ansible-core 2.17 dropped Python 3.6 on managed nodes, which is the platform Python on
+      // RHEL 8. 2.16.x is the last line that can still manage those hosts.
+      description: "rhel8-compat: Hold ansible-core to 2.16.x",
+      matchPackageNames: ["ansible-core"],
+      allowedVersions: "<2.17",
+    },
+    {
+      // The ansible community package pins its ansible-core line; 9.x is built on 2.16 and
+      // 10.0.0 moved to 2.17.
+      description: "rhel8-compat: Hold ansible to 9.x",
+      matchPackageNames: ["ansible"],
+      allowedVersions: "<10.0.0",
+    },
+    {
+      // ansible-core 2.16 supports controller Python up to 3.12.
+      description: "rhel8-compat: Hold python to <3.13",
+      matchPackageNames: ["python"],
+      allowedVersions: "<3.13",
+    },
+    {
+      // Carried over as-is: the rule above did not catch python declared in mise, so match it
+      // there by depName.
+      description: "rhel8-compat: Hold python to <3.13 in mise",
+      matchManagers: ["mise"],
+      matchDepNames: ["python"],
+      allowedVersions: "<3.13",
+    },
+    {
+      // community.general 12.0.0 requires ansible-core 2.17, so 11.x is the last line that
+      // installs alongside the ansible-core hold above.
+      description: "rhel8-compat: Hold community.general to 11.x",
+      matchManagers: ["ansible-galaxy"],
+      matchPackageNames: ["community.general"],
+      allowedVersions: "<12.0.0",
+    },
+    {
+      // community.crypto 3.0.0 requires ansible-core 2.17; the 2.x line still supports 2.16 and
+      // still gets releases.
+      description: "rhel8-compat: Hold community.crypto to 2.x",
+      matchManagers: ["ansible-galaxy"],
+      matchPackageNames: ["community.crypto"],
+      allowedVersions: "<3.0.0",
+    },
+  ],
+}
