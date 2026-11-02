@@ -6,4 +6,6 @@
     ":dependencyDashboard",
     ":semanticCommits",
   ],
+  labels: ["renovate"],
+  dependencyDashboardLabels: ["renovate"],
 }
