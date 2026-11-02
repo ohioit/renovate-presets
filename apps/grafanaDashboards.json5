@@ -1,3 +1,15 @@
+// Updates the revisions of dashboards deployed from grafana.com. Only files whose names end in
+// `grafanadashboard.yaml` or `grafanadashboard.yml`, optionally followed by `.j2`, are scanned.
+// Download URLs and grafana-operator resources are both recognised:
+//
+//   url: https://grafana.com/api/dashboards/1860/revisions/37/download
+//
+//   grafanaCom:
+//     id: 1860
+//     revision: 37
+//
+// In grafana-operator resources, `id` and `revision` must be on adjacent lines, in either order,
+// indented by 2, 4, 6 or 8 spaces. Anything else is left untracked.
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   customDatasources: {
