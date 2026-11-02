@@ -1,3 +1,5 @@
+// Holds kubectl to the Kubernetes minor version our clusters run. Use it if you manage kubectl with
+// mise, which is the setup its rule is written to match.
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   packageRules: [

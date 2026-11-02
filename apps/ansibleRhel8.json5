@@ -19,7 +19,8 @@
       allowedVersions: "<10.0.0",
     },
     {
-      // ansible-core 2.16 supports controller Python up to 3.12.
+      // ansible-core 2.16 supports controller Python up to 3.12. This matches any dependency with
+      // this exact name, including a Docker image called `python`.
       description: "rhel8-compat: Hold python to <3.13",
       matchPackageNames: ["python"],
       allowedVersions: "<3.13",
