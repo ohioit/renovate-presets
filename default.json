@@ -2,26 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": [
     "Stock Renovate presets that form the base of this bundle. Listed alphabetically first so subsequent presets in this repo can override.",
-    "Brand the Renovate dependency dashboard issue with a distinctive title so it's easy to spot among other issues.",
-    "Extend the built-in flux and kubernetes managers to also scan Jinja-templated YAML (`.yaml.j2` / `.yml.j2`).",
-    "Scope the helm-values manager to values and Flux HelmRelease files (plus their `.j2` variants) so bare `image:` lines elsewhere aren't double-extracted alongside the kubernetes manager, which inflates grouped-update counts (e.g. `minimumGroupSize`).",
-    "Resolve `mirror.gcr.io` references against Docker Hub so Renovate finds tags and digests via the upstream registry.",
+    "Extend the built-in kubernetes manager to scan all YAML, and the helmfile and kustomize managers to also scan Jinja-templated YAML (`.yaml.j2` / `.yml.j2`).",
+    "Extend the helm-values manager beyond its default `values.yaml` to HelmRelease-named files (plus their `.j2` variants).",
     "Extend every general-purpose preset in this repo. App-specific presets under apps/ are opt-in."
   ],
   "extends": [
-    "config:recommended",
+    "config:best-practices",
     "docker:enableMajor",
     "helpers:pinGitHubActionDigestsToSemver",
-    ":automergeBranch",
-    ":dependencyDashboard",
     ":disableRateLimiting"
   ],
-  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
-  "flux": {
-    "managerFilePatterns": [
-      "/\\.ya?ml(?:\\.j2)?$/"
-    ]
-  },
   "helm-values": {
     "managerFilePatterns": [
       "/(^|/)values\\.ya?ml(?:\\.j2)?$/",
@@ -45,9 +35,6 @@
     "managerFilePatterns": [
       "/(^|/)kustomization\\.ya?ml(?:\\.j2)?$/"
     ]
-  },
-  "registryAliases": {
-    "mirror.gcr.io": "docker.io"
   },
   "customManagers": [
     {
@@ -75,20 +62,6 @@
   ],
   "packageRules": [
     {
-      "description": "Point 1Password Connect at its upstream changelog",
-      "matchPackageNames": [
-        "/1password/"
-      ],
-      "changelogUrl": "https://github.com/1Password/connect/blob/main/CHANGELOG.md"
-    },
-    {
-      "description": "Point Cloudflared at its upstream release notes",
-      "matchPackageNames": [
-        "/cloudflared/"
-      ],
-      "changelogUrl": "https://github.com/cloudflare/cloudflared/blob/master/RELEASE_NOTES"
-    },
-    {
       "description": "Override Helmfile dependency name to the full package name",
       "matchDatasources": [
         "docker"
@@ -102,6 +75,7 @@
       "description": "Normalize packageName for mise github-releases tools so single-word names (`lefthook`) resolve to `lefthook/lefthook`",
       "matchFileNames": [
         ".mise.toml",
+        ".mise/config.toml",
         "mise.toml"
       ],
       "matchDatasources": [
@@ -109,16 +83,6 @@
         "github-tags"
       ],
       "overridePackageName": "{{#if (lookup (split packageName '/') 1)}}{{packageName}}{{else if (lookup (split packageName ':') 1)}}{{ lookup (split packageName ':') 1 }}/{{ lookup (split packageName ':') 1 }}{{else}}{{packageName}}/{{packageName}}{{/if}}"
-    },
-    {
-      "description": "Point mogenius/renovate-operator chart to its upstream repo for changelogs",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "ghcr.io/mogenius/helm-charts/renovate-operator"
-      ],
-      "sourceUrl": "https://github.com/mogenius/renovate-operator"
     },
     {
       "matchUpdateTypes": [

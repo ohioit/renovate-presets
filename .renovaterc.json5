@@ -5,7 +5,5 @@
     "local>ohioit/renovate-presets",
     ":dependencyDashboard",
     ":semanticCommits",
-    ":automergeMinor",
-    ":automergeDigest",
   ],
 }
