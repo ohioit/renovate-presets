@@ -46,7 +46,8 @@
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+(:\\s|=)(&\\S+\\s)?[\"']?(?<currentValue>[^\"'\\s]+)[\"']?"
       ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      "depTypeTemplate": "no-digest"
     },
     {
       "customType": "regex",
@@ -57,7 +58,8 @@
       "matchStrings": [
         "oci://(?<depName>[^:]+):(?<currentValue>\\S+)"
       ],
-      "datasourceTemplate": "docker"
+      "datasourceTemplate": "docker",
+      "depTypeTemplate": "no-digest"
     }
   ],
   "packageRules": [
@@ -70,6 +72,34 @@
         "helmfile"
       ],
       "overrideDepName": "{{packageName}}"
+    },
+    {
+      "description": "Disable digest pinning for Helmfile releases: an OCI chart's `version` has no place for a digest",
+      "matchManagers": [
+        "helmfile"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "pinDigests": false
+    },
+    {
+      "description": "Disable digest pinning for Helm charts in Flux HelmReleases and Kustomize: a chart's `version` has no place for a digest",
+      "matchManagers": [
+        "flux",
+        "kustomize"
+      ],
+      "matchDepTypes": [
+        "HelmChart"
+      ],
+      "pinDigests": false
+    },
+    {
+      "description": "Disable digest pinning for this preset's custom managers: neither captures a digest, so Renovate cannot write one",
+      "matchDepTypes": [
+        "no-digest"
+      ],
+      "pinDigests": false
     },
     {
       "description": "Normalize packageName for mise github-releases tools so single-word names (`lefthook`) resolve to `lefthook/lefthook`",

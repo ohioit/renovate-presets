@@ -19,7 +19,7 @@ That loads the [default preset](./default.json). [Application presets](#applicat
 
 **Renovate's recommended setup**, with some settings to be aware of:
 
-- Renovate's [`config:best-practices`](https://docs.renovatebot.com/presets-config/#configbest-practices): a dependency dashboard issue, pinned Docker and GitHub Action digests, weekly lock file maintenance, and a minimum release age for npm packages.
+- Renovate's [`config:best-practices`](https://docs.renovatebot.com/presets-config/#configbest-practices): a dependency dashboard issue, pinned Docker and GitHub Action digests (except where Renovate can't write one: Helmfile releases, Kustomize Helm charts, version comments and `oci://` references), weekly lock file maintenance, and a minimum release age for npm packages.
 - Major updates for Docker images are enabled.
 - **Renovate's PR rate limits are turned off**, so a repo with many outdated dependencies gets all its PRs at once. See [Overriding the defaults](#overriding-the-defaults) to set limits.
 
