@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.0.1](https://github.com/ohioit/renovate-presets/compare/1.0.0...1.0.1) (2026-11-02)
+
+
+### Bug Fixes
+
+* **default:** disable digest pinning where digests cannot be written ([#12](https://github.com/ohioit/renovate-presets/issues/12)) ([1c8611e](https://github.com/ohioit/renovate-presets/commit/1c8611eb72a7adad4cd056711618a3ad91852131))
+
+
+### Documentation
+
+* rewrite README for consumers and add CONTRIBUTING ([#11](https://github.com/ohioit/renovate-presets/issues/11)) ([410b04b](https://github.com/ohioit/renovate-presets/commit/410b04b9ddbf09ae3530d544f4d617d4a33fcb96))
+
+
+### Continuous Integration
+
+* **stale:** exempt Renovate issues and PRs from stale ([#9](https://github.com/ohioit/renovate-presets/issues/9)) ([6d04e1d](https://github.com/ohioit/renovate-presets/commit/6d04e1d380ce47b6f3ef35258139af83f08af0d3))
+
 ## 1.0.0 (2026-11-02)
 
 
