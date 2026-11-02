@@ -5,14 +5,16 @@
 "aqua:rhysd/actionlint" = "1.7.12"
 "aqua:zizmorcore/zizmor" = "1.31.1"
 "npm:oxfmt" = "0.75.0"
+"node" = "26.13.0"
+
 # @yarnpkg/libzip 3.2.2 shipped without provenance where 3.2.0 had it, so mise's
 # no-downgrade trust policy refuses the whole tree. It reaches us through
 # @yarnpkg/core, which requires ^3.2.2 — the floor, so no renovate version can
 # resolve past it. Drop the exclude once upstream publishes an attested release.
-"npm:renovate" = { version = "44.198.2", trust_policy_excludes = [
-  "@yarnpkg/libzip",
-] }
-node = "26.13.0"
+[tools."npm:renovate"]
+version = "44.199.0"
+allow_builds = ["re2"]
+trust_policy_excludes = ["@yarnpkg/libzip"]
 
 [tasks.lint]
 description = "Run every linter"
