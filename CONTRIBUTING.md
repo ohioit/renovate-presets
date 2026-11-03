@@ -69,8 +69,10 @@ conventional commit is left out of the changelog and does not count towards a re
 
 - Keep presets flat and self-contained. A tag only applies to the reference it is written on, so a
   preset that referenced another file here could not pass its tag along.
-- Rules that apply to everyone go in `default.json`. Rules that only matter if you run a particular
-  application go in a new or existing `apps/<name>.json5`, which consumers opt in to.
+- Rules that apply to everyone go in `default.json`. So do rules for a particular tool, as long as
+  they change nothing in repos without that tool and need no local decision, so that consumers get
+  them without having to know they need them. Anything else, such as a version hold that depends on
+  what you run, goes in a new or existing `apps/<name>.json5`, which consumers opt in to.
 - Give new rules a `description`, and in `.json5` files add a comment explaining anything
   non-obvious, such as why a version is held.
 - When you add an `apps/` preset, add it to the README table and describe its usage and limitations
