@@ -102,6 +102,17 @@
       "pinDigests": false
     },
     {
+      "description": "Strip the `kustomize/` prefix from Kustomize's release tags, which Renovate otherwise treats as unstable and never offers as updates. The prefix also separates them from the repo's `api/`, `kyaml/` and `cmd/config/` releases.",
+      "matchDatasources": [
+        "github-releases",
+        "github-tags"
+      ],
+      "matchPackageNames": [
+        "kubernetes-sigs/kustomize"
+      ],
+      "extractVersion": "^kustomize/(?<version>v.+)$"
+    },
+    {
       "description": "Normalize packageName for mise github-releases tools so single-word names (`lefthook`) resolve to `lefthook/lefthook`",
       "matchFileNames": [
         ".mise.toml",
