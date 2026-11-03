@@ -58,7 +58,7 @@ kustomizeVersion: v5.4.0
 
 ```sh
 # renovate: datasource=docker depName=ghcr.io/stefanprodan/podinfo
-PODINFO_VERSION=6.9.0
+PODINFO_VERSION=6.17.0
 ```
 
 The comment must end after `depName`. A line with anything after it, such as `versioning=semver`, is not picked up.
