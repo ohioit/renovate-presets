@@ -1,6 +1,6 @@
 # renovate-presets
 
-Shared [Renovate](https://docs.renovatebot.com) configuration for repositories that deploy to Kubernetes. Extend it to get sensible defaults, wider detection of Kubernetes, Helm and Kustomize dependencies, and consistent commit messages.
+Shared [Renovate](https://docs.renovatebot.com) configuration for any repository, whatever it builds or deploys. Extend it to get sensible defaults and consistent commit messages, along with wider detection of Kubernetes, Helm and Kustomize dependencies for the repositories that have them.
 
 ## Quick start
 
@@ -29,6 +29,8 @@ That loads the [default preset](./default.json). [Application presets](#applicat
 | ------------- | ------------------------------------------------------------------------------- |
 | `kubernetes`  | Every `.yaml` and `.yml` file (Renovate scans none by default)                  |
 | `helm-values` | `helmrelease.yaml`, `helm-release.yaml` and `hr.yaml`, as well as `values.yaml` |
+
+The `kubernetes` manager skips any file without both `apiVersion` and `kind`, so other YAML is left alone.
 
 `kubernetes`, `helm-values`, `helmfile` and `kustomize` also read Jinja-templated versions of their files, such as `values.yaml.j2`.
 
