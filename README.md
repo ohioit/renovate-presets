@@ -52,7 +52,7 @@ Major and `0.x` minor updates always use this format. The others need semantic c
 For a version that no manager detects, add a comment directly above it, in any file:
 
 ```yaml
-# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
+# renovate: datasource=docker depName=registry.k8s.io/kustomize/kustomize
 kustomizeVersion: v5.4.0
 ```
 

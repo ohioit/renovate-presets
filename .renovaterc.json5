@@ -8,4 +8,11 @@
   ],
   labels: ["renovate"],
   dependencyDashboardLabels: ["renovate"],
+  packageRules: [
+    {
+      description: "The README's `# renovate:` comments are documentation examples, not dependencies",
+      matchFileNames: ["README.md"],
+      enabled: false,
+    },
+  ],
 }
