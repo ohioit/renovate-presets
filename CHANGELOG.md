@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.2](https://github.com/ohioit/renovate-presets/compare/1.0.1...1.0.2) (2026-11-03)
+
+
+### Bug Fixes
+
+* **default:** track Kustomize releases despite their tag prefix ([#16](https://github.com/ohioit/renovate-presets/issues/16)) ([303deb9](https://github.com/ohioit/renovate-presets/commit/303deb9029aad092c308b89a55956788c1778750))
+
+
+### Documentation
+
+* **contributing:** explain when a tool's rule belongs in the default preset ([#18](https://github.com/ohioit/renovate-presets/issues/18)) ([4b116c5](https://github.com/ohioit/renovate-presets/commit/4b116c5e928c58f50a49ab762e60ff90122a6f11))
+* **readme:** describe the presets as usable by any repository ([#17](https://github.com/ohioit/renovate-presets/issues/17)) ([4927212](https://github.com/ohioit/renovate-presets/commit/492721229804fdc3c643c9ff85b2a939ecd7f47f))
+* **readme:** fix Kustomize example and exclude README from Renovate ([#14](https://github.com/ohioit/renovate-presets/issues/14)) ([60128e3](https://github.com/ohioit/renovate-presets/commit/60128e37e10e0cafb7a633d5667495d70d5e76df))
+
 ## [1.0.1](https://github.com/ohioit/renovate-presets/compare/1.0.0...1.0.1) (2026-11-02)
 
 
