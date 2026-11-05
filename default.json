@@ -113,6 +113,14 @@
       "extractVersion": "^kustomize/(?<version>v.+)$"
     },
     {
+      "description": "Ignore the package files mise generates for its npm backend. They are digest-pinned in mise.lock and rewritten when the mise manager updates the tool, so updating them separately only duplicates that pull request.",
+      "matchFileNames": [
+        "**/.mise/locks/**",
+        "**/.config/mise/locks/**"
+      ],
+      "enabled": false
+    },
+    {
       "description": "Normalize packageName for mise github-releases tools so single-word names (`lefthook`) resolve to `lefthook/lefthook`",
       "matchFileNames": [
         ".mise.toml",
