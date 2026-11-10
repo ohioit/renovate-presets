@@ -119,7 +119,7 @@ specifiers = ["0.75.0"]
 
 [[tools."npm:renovate"]]
 version = "44.199.0"
-aube = { path = "locks/npm-renovate/44.199.0~8939fb53", digest = "sha256:a2f2ebb5e7548f12c113a9f14925f8d8b53c00b9bf3aff86c5a3a450dd78025e" }
+aube = { path = "locks/npm-renovate/44.199.0~8939fb53", digest = "sha256:a6748a53f2ad0b1203ec065a362c2fa563727c29cbca6c30d5c9cfec8282943f" }
 backend = "npm:renovate"
 specifiers = ["44.199.0"]
 
