@@ -12,7 +12,7 @@
 # @yarnpkg/core, which requires ^3.2.2 — the floor, so no renovate version can
 # resolve past it. Drop the exclude once upstream publishes an attested release.
 [tools."npm:renovate"]
-version = "44.199.0"
+version = "44.227.4"
 allow_builds = ["re2"]
 trust_policy_excludes = ["@yarnpkg/libzip"]
 
