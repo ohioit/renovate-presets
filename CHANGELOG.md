@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.0.0](https://github.com/ohioit/renovate-presets/compare/1.0.3...2.0.0) (2026-11-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **mise:** Update tool npm:oxfmt (0.75.0 ➔ 0.78.0) ([#26](https://github.com/ohioit/renovate-presets/issues/26))
+
+### Features
+
+* **ansibleRhel8:** Limit buluma.roles to &lt;3.0.0 ([#29](https://github.com/ohioit/renovate-presets/issues/29)) ([e225c81](https://github.com/ohioit/renovate-presets/commit/e225c816c9497a17a44100f20429fca18587dd6f))
+* **mise:** Update tool npm:oxfmt (0.75.0 ➔ 0.78.0) ([#26](https://github.com/ohioit/renovate-presets/issues/26)) ([c0ac11e](https://github.com/ohioit/renovate-presets/commit/c0ac11e792ce19ee773d8e6e85bd6c9313e75a3b))
+
+
+### Continuous Integration
+
+* **github-action:** update action jdx/mise-action (v5.2.5 ➔ v5.2.8) ([#24](https://github.com/ohioit/renovate-presets/issues/24)) ([77e79d1](https://github.com/ohioit/renovate-presets/commit/77e79d1ccd5dbd1792d9a97e4e49432794bccf47))
+
+
+### Miscellaneous Chores
+
+* **mise:** lock file maintenance tool ([#27](https://github.com/ohioit/renovate-presets/issues/27)) ([5a06e34](https://github.com/ohioit/renovate-presets/commit/5a06e34291f6f5cc561138e265f572779144563b))
+* **mise:** update tool aqua:zizmorcore/zizmor (1.31.1 ➔ 1.32.0) ([#25](https://github.com/ohioit/renovate-presets/issues/25)) ([6d20d74](https://github.com/ohioit/renovate-presets/commit/6d20d74581a8181af07a7dcbb7ca4efdf73a4b88))
+* **mise:** update tool node (26.13.0 ➔ v26.13.1) ([#28](https://github.com/ohioit/renovate-presets/issues/28)) ([dc24931](https://github.com/ohioit/renovate-presets/commit/dc24931a069c1c7c1912942674f8068bc69ce621))
+* **mise:** update tool npm:renovate (44.199.0 ➔ 44.237.1) ([#21](https://github.com/ohioit/renovate-presets/issues/21)) ([ce70fb9](https://github.com/ohioit/renovate-presets/commit/ce70fb9759cb6dfe1b96d1ed32b946e8cef98936))
+
 ## [1.0.3](https://github.com/ohioit/renovate-presets/compare/1.0.2...1.0.3) (2026-11-05)
 
 
