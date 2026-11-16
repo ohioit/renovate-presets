@@ -56,5 +56,21 @@
       matchPackageNames: ["buluma.roles"],
       allowedVersions: "<3.0.0",
     },
+    {
+      // community.vmware 5.0.0 requires ansible-core 2.17, so 4.x is the last line that installs
+      // alongside the ansible-core hold above.
+      description: "rhel8-compat: Hold community.vmware to 4.x",
+      matchManagers: ["ansible-galaxy"],
+      matchPackageNames: ["community.vmware"],
+      allowedVersions: "<5.0.0",
+    },
+    {
+      // community.vmware 4.8.5 and later require pyVmomi>=6.7.1,<9.0, so hold pyvmomi with the
+      // collection hold above. This matches any manager, so pyproject.toml, Pipfile and Poetry
+      // are held too.
+      description: "rhel8-compat: Hold pyvmomi to <9.0",
+      matchPackageNames: ["pyvmomi"],
+      allowedVersions: "<9.0",
+    },
   ],
 }
