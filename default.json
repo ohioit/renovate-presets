@@ -113,6 +113,16 @@
       "extractVersion": "^kustomize/(?<version>v.+)$"
     },
     {
+      "description": "Point fedora.linux_system_roles at the repo it is released from, so its pull requests include release notes. The collection's Galaxy metadata names the project's website repo instead, which has no releases.",
+      "matchDatasources": [
+        "galaxy-collection"
+      ],
+      "matchPackageNames": [
+        "fedora.linux_system_roles"
+      ],
+      "sourceUrl": "https://github.com/linux-system-roles/auto-maintenance"
+    },
+    {
       "description": "Ignore the package files mise generates for its npm backend. They are digest-pinned in mise.lock and rewritten when the mise manager updates the tool, so updating them separately only duplicates that pull request.",
       "matchFileNames": [
         "**/.mise/locks/**",
