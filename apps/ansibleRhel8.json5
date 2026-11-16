@@ -49,5 +49,12 @@
       matchPackageNames: ["community.crypto"],
       allowedVersions: "<3.0.0",
     },
+    {
+      // buluma.roles 3.0.0 requires ansible-core 2.19
+      description: "rhel8-compat: Hold buluma.roles to 2.x",
+      matchManagers: ["ansible-galaxy"],
+      matchPackageNames: ["buluma.roles"],
+      allowedVersions: "<3.0.0",
+    },
   ],
 }
