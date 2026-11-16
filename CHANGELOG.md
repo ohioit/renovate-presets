@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://github.com/ohioit/renovate-presets/compare/2.0.0...2.1.0) (2026-11-16)
+
+
+### Features
+
+* **ansibleRhel8:** hold community.vmware to 4.x and pyvmomi to &lt;9.0 ([#31](https://github.com/ohioit/renovate-presets/issues/31)) ([2df4aba](https://github.com/ohioit/renovate-presets/commit/2df4abafcabc3394a6f3f096d1ae22e5994c347d))
+* **default:** link fedora.linux_system_roles release notes from auto-maintenance ([#32](https://github.com/ohioit/renovate-presets/issues/32)) ([1f191ac](https://github.com/ohioit/renovate-presets/commit/1f191ac2e6ad9b985097ca9ddc6ff918ba8c3dc9))
+
 ## [2.0.0](https://github.com/ohioit/renovate-presets/compare/1.0.3...2.0.0) (2026-11-16)
 
 
