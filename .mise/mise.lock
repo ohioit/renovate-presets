@@ -118,10 +118,10 @@ backend = "npm:oxfmt"
 specifiers = ["0.78.0"]
 
 [[tools."npm:renovate"]]
-version = "44.237.1"
-aube = { path = "locks/npm-renovate/44.237.1~8939fb53", digest = "sha256:45555a13d97a4a0cbc3aaa27a2aa35f2cd5b0aea00b376482d54f8dbbc9bc8ac" }
+version = "44.251.0"
+aube = { path = "locks/npm-renovate/44.251.0~8939fb53", digest = "sha256:90114aba2b3ff72ef6498793ae40913db7ead4e05eb8b0ebd0987766809896dc" }
 backend = "npm:renovate"
-specifiers = ["44.237.1"]
+specifiers = ["44.251.0"]
 
 [tools."npm:renovate".options]
 allow_builds = '["re2"]'
